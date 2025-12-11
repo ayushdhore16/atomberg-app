@@ -1,11 +1,10 @@
-// Mock data for development and testing without real devices
 import { Device, DeviceState } from "./api";
 
-// Enable mock mode by setting this to true
-// You can also use: NEXT_PUBLIC_MOCK_MODE environment variable
+// For development, we're using mock data instead of hitting real API
+// This lets us test everything locally without needing actual devices
 export const MOCK_MODE = process.env.NEXT_PUBLIC_MOCK_MODE === "true" || true;
 
-// Mock devices simulating real Atomberg fans - using a mutable array
+// Some sample fans to start with
 export const MOCK_DEVICES: Device[] = [
   {
     device_id: "DEV001",
@@ -33,8 +32,8 @@ export const MOCK_DEVICES: Device[] = [
   },
 ];
 
-// Mock device states - stores current state of each device
-// All fans start in the OFF state
+// Keep track of each fan's current state (power, speed, etc)
+// Everyone starts with power off
 const mockDeviceStates: Record<string, { is_powered: boolean; speed: number; brightness: number; timer: number | null }> = {
   DEV001: {
     is_powered: false,
@@ -62,7 +61,7 @@ const mockDeviceStates: Record<string, { is_powered: boolean; speed: number; bri
   },
 };
 
-// Simulate network delay
+// Mimic actual network delay so it feels more real
 export async function simulateDelay(ms: number = 500): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
@@ -74,10 +73,10 @@ export async function getMockAccessToken(
 ): Promise<string> {
   await simulateDelay(300);
 
-  // DEMO MODE: Only accept "abc" for both credentials
-  // All other credentials are rejected
+  // For testing, just use abc/abc
+  // In production this would validate against your actual backend
   if (apiKey !== "abc" || refreshToken !== "abc") {
-    throw new Error("Invalid credentials. Demo mode requires: API Key: abc, Refresh Token: abc");
+    throw new Error("Invalid credentials. Use api key: abc, refresh token: abc");
   }
 
   return `mock_access_token_${Date.now()}`;
@@ -89,7 +88,7 @@ export async function getMockDevices(
 ): Promise<Device[]> {
   await simulateDelay(400);
 
-  // Simulate expired token
+  // Check if token looks valid
   if (!accessToken.startsWith("mock_")) {
     throw new Error("Invalid access token");
   }
@@ -139,8 +138,7 @@ export async function sendMockCommand(
   switch (command) {
     case "power":
     case "is_powered":
-      // Accept multiple formats for true: 1, "on", "true", true (when called from API)
-      // Accept multiple formats for false: 0, "off", "false", false (when called from API)
+      // Toggle power on/off based on the value
       deviceState.is_powered = value === 1 || value === "on" || value === "true";
       return {
         success: true,
@@ -148,6 +146,7 @@ export async function sendMockCommand(
       };
 
     case "speed":
+      // Speed goes from 1 to 5
       if (typeof value !== "number" || value < 1 || value > 5) {
         throw new Error("Speed must be between 1 and 5");
       }
@@ -158,12 +157,15 @@ export async function sendMockCommand(
       };
 
     case "brightness":
+      // Brightness from 0 to 100%
       if (typeof value !== "number" || value < 0 || value > 100) {
         throw new Error("Brightness must be between 0 and 100");
       }
       deviceState.brightness = value;
       return {
         success: true,
+        message: `Brightness set to ${value}%`,
+      };
         message: `Brightness set to ${value}%`,
       };
 

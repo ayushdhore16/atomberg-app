@@ -1,35 +1,39 @@
-# 🚀 ATOMBERG APP - LOCAL DEPLOYMENT GUIDE
+# 🚀 Atomberg Smart Fan Control App - Setup Guide
 
-## Quick Start (5 minutes)
+Want to test the Atomberg fan control app locally? Takes about 5 minutes to get running.
 
-### Prerequisites
-- **Node.js 18+** (Download from https://nodejs.org)
-- **Terminal/Command Prompt**
-- **Internet connection**
+## Before You Start
+
+You'll need:
+- **Node.js 18 or higher** (grab it from https://nodejs.org if you don't have it)
+- A terminal/command prompt
+- Internet connection to download packages
 
 ---
 
-## Step 1: Check Node.js Installation
+## 1. Verify Node.js is installed
 
-Open terminal and run:
+Open your terminal and check:
 
 ```bash
 node --version
 npm --version
 ```
 
-Both should show versions 18+. If not, download Node.js from https://nodejs.org
+Should both show 18 or higher. If not, go download Node.js.
 
 ---
 
-## Step 2: Clone the Repository
+## 2. Get the Code
+
+Either clone from GitHub:
 
 ```bash
 git clone https://github.com/ayushdhore16/atomberg-app.git
 cd atomberg-app
 ```
 
-Or if you have it locally:
+Or navigate to where you have it locally:
 
 ```bash
 cd d:\atomberg-app
@@ -37,23 +41,25 @@ cd d:\atomberg-app
 
 ---
 
-## Step 3: Install Dependencies
+## 3. Install Everything
+
+Run npm install to grab all dependencies:
 
 ```bash
 npm install
 ```
 
-This downloads all required packages (takes 2-3 minutes).
+This takes about 2-3 minutes depending on your internet speed.
 
 ---
 
-## Step 4: Run Development Server
+## 4. Start the Dev Server
 
 ```bash
 npm run dev
 ```
 
-You should see:
+You should see something like:
 
 ```
 ▲ Next.js 16.0.8
@@ -63,80 +69,66 @@ You should see:
 
 ---
 
-## Step 5: Open in Browser
+## 5. Open It Up
 
-1. Click: http://localhost:3000
-2. Or type in browser address bar: `http://localhost:3000`
+Just navigate to `http://localhost:3000` in your browser. It should open automatically, but if not, copy-paste that address.
 
 ---
 
-## Step 6: Login
+## 6. Login
 
-Enter credentials:
+Use the demo credentials:
 - **API Key:** `abc`
 - **Refresh Token:** `abc`
 
-Click **Login**
+Click the Login button and you're in.
 
 ---
 
-## Using the App
-
-### Dashboard Features:
-
-1. **Add Fan** (Green Button)
-   - Click "➕ Add Fan"
-   - Enter device name
-   - Select device type
-   - Click "Add Fan"
-
-2. **Delete Fan** (Red Button)
-   - Click "🗑️ Delete Fan"
-   - Select device to delete
-   - Confirm deletion
-
-3. **Control Device** (Blue Button)
-   - Click "⚡ Control Fan"
-   - Adjust power, speed, brightness, timer
-   - Changes update instantly
-
-4. **Interactive Logo**
-   - Click Atomberg logo (yellow fan)
-   - Watch it spin! 🔄
+## What to Try
 
 ---
 
-## Features to Test
+## What to Try
 
-✅ Login with abc/abc  
-✅ Add a new fan  
-✅ Delete a fan  
-✅ Control device (power on/off)  
-✅ Adjust speed (0-5)  
-✅ Adjust brightness (0-5)  
-✅ Set timer (0-60 min)  
-✅ View real-time statistics  
-✅ Click logo animation  
-✅ Mobile responsive design  
+Once you're logged in, here's what you can play with:
+
+- **Add a Fan** - Hit the green "Add Fan" button at the top, give it a name, pick a type. It'll instantly show up in your list
+- **Delete a Fan** - Red "Delete Fan" button. Pick one, confirm (can't undo this one), and it's gone
+- **Control a Device** - Click on any fan to open its control panel. You can toggle power, adjust speed (0-5), brightness (0-5), and set a timer (0-60 minutes)
+- **Watch the Numbers Change** - The stats cards at the top update in real-time as you add/remove fans
+- **Click the Logo** - That yellow Atomberg fan icon in the top left? Click it to watch it spin. It's subtle but kinda cool
+- **Check Mobile** - Resize your browser or test on your phone. Everything adapts nicely
 
 ---
 
-## Stop the Server
+## Troubleshooting
 
-Press `Ctrl + C` in terminal
-
----
-
-## Production Build (Optional)
-
-To build for production:
-
+**Port 3000 already in use?**
 ```bash
-npm run build
-npm run start
+npm run dev -- -p 3001
 ```
 
-Visit: http://localhost:3000
+**npm install fails?**
+Make sure you have the latest Node.js (18+) and try deleting `node_modules` folder, then run `npm install` again.
+
+**Changes not showing?**
+Hard refresh your browser (Ctrl + Shift + R on Windows/Linux, Cmd + Shift + R on Mac) or clear cache.
+
+**Can't login?**
+Double-check the credentials: `abc` and `abc` (no spaces, exactly as shown)
+
+---
+
+## Quick Commands Reference
+
+```bash
+npm run dev          # Start development server
+npm run build        # Build for production
+npm run lint         # Check code quality
+npm run start        # Run production build
+npm install          # Install dependencies
+```
 
 ---
 

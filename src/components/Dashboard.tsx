@@ -16,16 +16,17 @@ export function Dashboard() {
   const [isDeleteFanModalOpen, setIsDeleteFanModalOpen] = useState(false);
   const [fanToDelete, setFanToDelete] = useState<Device | null>(null);
 
+  // Count how many fans are currently running
   const runningFans = devices.filter((d) => {
     const state = deviceStates[d.device_id];
     return state?.is_powered === true;
   }).length;
 
+  // When user clicks on a device to control it
   if (selectedDevice) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4 md:p-8">
         <div className="max-w-4xl mx-auto">
-          {/* Header */}
           <div className="flex items-center justify-between mb-8">
             <div className="flex items-center gap-4">
               <Button
@@ -48,7 +49,7 @@ export function Dashboard() {
                 </svg>
               </Button>
               <h1 className="text-3xl font-bold text-gray-900">
-                Control Your Fan
+                Controlling: {selectedDevice.name}
               </h1>
             </div>
             <Button variant="secondary" onClick={logout} size="sm">
@@ -56,21 +57,21 @@ export function Dashboard() {
             </Button>
           </div>
 
-          {/* Fan Control */}
           <FanControl device={selectedDevice} />
         </div>
       </div>
     );
   }
 
+  // Main dashboard view - list of all fans
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 p-4 md:p-8">
-      {/* Background decoration */}
+      {/* Subtle background effects */}
       <div className="fixed top-0 left-0 w-96 h-96 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse"></div>
       <div className="fixed bottom-0 right-0 w-96 h-96 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse"></div>
 
       <div className="relative max-w-6xl mx-auto">
-        {/* Header */}
+        {/* Top section with logo and header */}
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-8 gap-4">
           <div className="animate-fade-in flex items-center gap-4">
             <AtombergLogo size="sm" interactive={true} />

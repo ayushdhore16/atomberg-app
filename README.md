@@ -1,53 +1,51 @@
 # Atomberg Smart Fan Controller 🌀
 
-A beautiful, production-ready web application for controlling your Atomberg smart fans. Manage power, speed, and more from one elegant interface.
+Control all your Atomberg smart fans from one place. Simple, clean, and actually works.
 
-## 🎯 Features
+## What You Can Do
 
-- **🔐 Secure Authentication** - API key and refresh token login
-- **📱 Device Management** - View and manage all your smart fans
-- **🎮 Advanced Controls** - Power, speed, brightness, and sleep timer
-- **📊 Real-time Status** - Live device state and online/offline indicators
-- **🎨 Beautiful UI** - Modern, responsive design for all devices
-- **⚡ Fast Performance** - Optimized Next.js application
-- **🔒 Production Ready** - Type-safe with TypeScript, comprehensive error handling
+- Login with your Atomberg credentials
+- See all your fans at a glance
+- Add new fans to the system
+- Delete fans you don't need
+- Control power, speed, brightness, and set timers
+- Watch stats update in real-time
+- Click the logo to spin it (totally unnecessary but fun)
 
-## 🚀 Quick Start
+## Requirements
 
-### Prerequisites
+- Node.js 18 or higher
+- npm (comes with Node.js)
 
-- Node.js 18+ and npm/yarn
-- Atomberg smart fan(s)
-- API Key and Refresh Token from Atomberg Home app
-
-### Installation & Run
+## Getting Started
 
 ```bash
+# Get the code
+git clone https://github.com/ayushdhore16/atomberg-app.git
+cd atomberg-app
+
 # Install dependencies
 npm install
 
-# Start development server
+# Run it
 npm run dev
-
-# Open http://localhost:3000
 ```
 
-### Getting Your Credentials
+Open your browser to `http://localhost:3000`
 
-1. Open **Atomberg Home** app
-2. Go to **Settings** → **Developer Mode**
-3. Enable and copy your **API Key** and **Refresh Token**
-4. Paste them in the app to connect
+## Demo Credentials
 
-## 📦 Building for Production
+For testing:
+- API Key: `abc`
+- Refresh Token: `abc`
+
+## Build It for Production
 
 ```bash
-# Create optimized production build
 npm run build
-
-# Start production server
 npm start
 ```
+
 
 ## 🌐 Deployment
 
